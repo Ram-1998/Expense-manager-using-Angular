@@ -1,0 +1,202 @@
+  <!DOCTYPE html>
+  <html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <title>personal expense manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+  </head>
+
+  <body ng-app="expenseManager" ng-controller="myCtrl">
+
+    <div class="X">
+
+      <div class="popup-bg" ng-show="loadReport">
+        <div class="popup-msg">
+          <div class="close-x" ng-click="hideReport()">X</div>
+          <div id="report"></div>
+        </div>
+      </div>
+      
+      <h1>Personal Expense Manager</h1>
+
+      <!--************Add New Item Buttons**************-->
+      <div class="addItem">
+        <h3>Add New Item</h3>
+        <form name="addItem">
+          <div class="row">
+            <div class="col-md-1"></div>      
+            <div class="col-md-3 formField">
+              <label>Item Name</label>
+              <input type="text" name="name" placeholder="Enter Item Name" ng-model="name"  required>
+              <p class="error" ng-show="addItem.name.$touched && addItem.name.$invalid">*Name is Required !!</p>
+            </div>
+            <div class="col-md-2 formField">
+              <label>Price</label>
+              <input type="number" name="price" placeholder="Enter Item Price" ng-model="price" required>
+              <p class="error" ng-show="addItem.price.$touched && addItem.price.$invalid">*price is Required !!</p>
+            </div>
+            <div class="col-md-3 formField">
+              <label>Category</label>
+              <select name="category" ng-model="category" required>
+                <option value="grocery">Grocery</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="vehicle">Vehicle</option>
+                <option value="food">Food</option>
+                <option value="miscellaneous">Miscellaneous</option>
+              </select>
+              <p class="error" ng-show="addItem.category.$touched && addItem.category.$invalid">*Please Select Category !!</p>
+            </div>
+            <div class="col-md-2 formField">
+              <label>Add Item</label>
+              <button class="btn" ng-click="addNewItem()">Add Item</button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+      <br><br>
+      <!--************List Start**************-->
+      <div class="row">
+        <div class="col-md-6">
+          <h3>History</h3>
+        </div>
+        <div class="col-md-5 report">
+          <button class="btn pull-right" ng-click="showReport()">See Report</button>
+        </div>
+      </div>
+
+      <div>
+
+
+        <div class="wrapper col-md-2">
+          <div class="top clearfix">
+            <div id="menu">
+              <div id="dd" class="wrapper-dropdown">
+                <span>Grocery : {{groceryTotal | convertToRupee}}</span>
+              </div>
+            </div><!--/#menu-->
+          </div><!--/.top-->
+          <div id="main">
+            <ul class="container default lists">
+              <li>
+                <span class="price">Price</span> 
+                <span class="name">Name</span> 
+              </li>
+              <li id="redecoration" ng-repeat="x in grocery track by $index">
+                <span class="price">{{x.price | convertToRupee}}</span> 
+                <span class="name">{{x.name}}</span> 
+              </li>
+            </ul>
+          </div><!--/#main-->
+        </div>
+
+        <div class="wrapper col-md-2">
+          <div class="top clearfix">
+            <div id="menu">
+              <div id="dd" class="wrapper-dropdown">
+                <span>Entertainment : {{entertainmentTotal | convertToRupee}}</span>
+              </div>
+            </div><!--/#menu-->
+          </div><!--/.top-->
+          <div id="main">
+            <ul class="container default lists">
+              <li>
+                <span class="price">Price</span> 
+                <span class="name">Name</span> 
+              </li>
+              <li id="redecoration" ng-repeat="x in entertainment track by $index">
+                <span class="price">{{x.price | convertToRupee}}</span> 
+                <span class="name">{{x.name}}</span> 
+              </li>
+
+            </ul>
+          </div><!--/#main-->
+        </div>
+
+        <div class="wrapper col-md-2">
+          <div class="top clearfix">
+            <div id="menu">
+              <div id="dd" class="wrapper-dropdown">
+                <span>Vehicle : {{vehicleTotal | convertToRupee}}</span>
+              </div>
+            </div><!--/#menu-->
+          </div><!--/.top-->
+          <div id="main">
+            <ul class="container default lists">
+              <li>
+                <span class="price">Price</span> 
+                <span class="name">Name</span> 
+              </li>
+              <li id="redecoration" ng-repeat="x in vehicle track by $index">
+                <span class="price">{{x.price | convertToRupee}}</span> 
+                <span class="name">{{x.name}}</span> 
+              </li>
+            </ul>
+          </div><!--/#main-->
+        </div>
+
+        <div class="wrapper col-md-2">
+          <div class="top clearfix">
+            <div id="menu">
+              <div id="dd" class="wrapper-dropdown">
+                <span>Food : {{foodTotal | convertToRupee}}</span>
+              </div>
+            </div><!--/#menu-->
+          </div><!--/.top-->
+          <div id="main">
+            <ul class="container default lists">
+              <li>
+                <span class="price">Price</span> 
+                <span class="name">Name</span> 
+              </li>
+              <li id="redecoration" ng-repeat="x in food track by $index">
+                <span class="price">{{x.price | convertToRupee}}</span> 
+                <span class="name">{{x.name}}</span> 
+              </li>
+            </ul>
+          </div><!--/#main-->
+        </div>
+
+        <div class="wrapper col-md-2">
+          <div class="top clearfix">
+            <div id="menu">
+              <div id="dd" class="wrapper-dropdown">
+                <span>Miscellaneous : {{miscellaneousTotal | convertToRupee}}</span>
+              </div>
+            </div><!--/#menu-->
+          </div><!--/.top-->
+          <div id="main">
+            <ul class="container default lists">
+              <li>
+                <span class="price">Price</span> 
+                <span class="name">Name</span> 
+              </li>
+              <li id="redecoration" ng-repeat="x in miscellaneous track by $index">
+                <span class="price">{{x.price | convertToRupee}}</span> 
+                <span class="name">{{x.name}}</span> 
+              </li>
+            </ul>
+          </div><!--/#main-->
+        </div>
+      </div>
+
+
+
+      <!-- <h2>Created By : Shree Ram Bansal</h2> -->
+    </div>
+    
+    
+
+  </body>
+
+  </html>

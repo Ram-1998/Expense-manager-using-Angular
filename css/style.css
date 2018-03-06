@@ -1,0 +1,364 @@
+@import url(https://fonts.googleapis.com/css?family=Cantora+One);
+*{
+box-sizing:border-box;
+margin:0; 
+padding:0;
+}
+ul{list-style-type:none;}
+::selection{
+  color:white; 
+  background:#E21759; 
+}
+/*Nicolas Gallagher's micro clearfix hack: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+    content: " "; 
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+/*===========/clearfix hack==============*/
+html,body{
+  height:100%;
+  min-height:500px;
+  background:url("../images/wall0.png");
+  font: normal 16px/1 "cantora one";
+}
+.wrapper{
+  position:relative;
+  margin:15px 22px;
+  border: 1px solid black;
+  border-radius:5px;
+  padding:15px 10px;
+  background: url("http://farm4.static.flickr.com/3630/3380087493_a076066f33.jpg") repeat scroll center center rgb(74, 74, 74);
+  box-shadow: 
+    inset 0px 1px 2px 0px rgba(255,255,255,0.3),
+    0 10px 5px -3px rgba(0,0,0,0.9),
+    0 0 5px black;
+  float: left;  
+  
+}
+.wrapper:after, .wrapper:before { 
+  content: " ";
+  display:block;
+  height: 0; 
+  width: 0;
+  position: absolute; 
+  bottom: 100%; 
+  border: solid transparent; 
+  pointer-events: none;
+} 
+.wrapper:after { 
+  border-color: rgba(32, 32, 32, 0); 
+  border-bottom-color: #1E1E1E; 
+  border-width: 10px; 
+  left: 50%; 
+  margin-left: -10px; 
+} 
+
+.top{
+  margin-bottom:15px;
+}
+#list, #menu, #add { 
+    position:relative;
+    display:block;
+    float:left;
+    width: 100%;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 3px; 
+    height: 32px; 
+    background:linear-gradient(#545151,#161515);
+    box-shadow: 
+      inset 0px -1px 2px 2px #232222,
+      inset 0 1px rgba(255,255,255,0.7),
+      0 1px 10px 1px black;
+    cursor:pointer;
+   
+}
+#list, #add {
+  width:40px;
+}
+
+#list:before {
+    border-bottom: 7px double #E0E0E0;
+    border-top: 2px solid #E0E0E0;    
+    content:"";
+    height: 3px; 
+    position: absolute; 
+    right:12px;  
+    top: 9px; 
+    width:16px;
+}
+#add{
+  text-align:center;
+  color:#E0E0E0;
+  line-height:30px;
+  font-size:14px;
+  margin-right:0;
+}
+.add{
+  position:relative; 
+  width:40px; 
+  float:right;
+}
+.options{
+  z-index:99;
+  width:100px;
+  position:absolute;
+  top:110%;
+  left:-150%;
+  background:black;
+  color:white;
+  background:linear-gradient(#545151,#262525);
+  border-radius:3px;
+  border:1px solid black;
+}
+.options ul li{
+  text-align:center;
+}
+.options ul li a{
+  display:block; 
+  width:100%; 
+  height:100%; 
+}
+.options ul li a:hover{
+  text-decoration:none;
+}
+
+#main{
+  color:#403A35;
+  background: url(https://subtlepatterns.com/patterns/linedpaper.png);
+  min-height:150px;
+  width:100%;
+  margin:0 auto;
+  border:1px solid black;
+  border-radius: 5px;
+  padding:5px; 
+  position:relative;
+  box-shadow:0 0 1px 1px rgba(0,0,0,0.4);
+}
+#main:after{
+  content:""; 
+  display:block;
+  height:100%; 
+  width:20px;
+  z-index:99;
+  pointer-events:none;
+  position:absolute;
+  left:60px; top:0;
+  border-left:4px double #FAD1D7;
+}
+
+.container{
+  border:1px solid #BFBFBF;
+  border-radius:4px;
+  margin:0 auto;
+  width:265px;
+  list-style-type:none;
+  min-height:150px
+}
+.container .price{
+  position:relative;
+  float: left;
+  width:30%;
+  overflow: auto;
+  left:;
+}
+.container .name{
+  position:relative;
+  left:15px;
+  width:70%;
+  height: auto;
+}
+ul li {
+  display: block;
+  width:100%;
+  border-bottom:1px dotted #C0C0C0;
+  line-height:2.3;
+}
+ul li:last-child{
+  border:none;
+}
+label{
+  display:inline-block;
+  cursor:pointer;
+  min-width:70%;
+}
+/*============================================================================================================================================================================================*/
+.wrapper-dropdown {
+  position: relative;
+    width:100%;
+    text-align:center;
+    color:#E0E0E0;
+    font-size:20px;
+    outline:none;
+    /* Font settings */
+    font-weight: bold;
+    color: #eee;
+}
+
+
+/*=======================================*/
+/*=============Add Items Part===========*/
+h3{
+  position: relative;
+  left:30px;
+  margin:10px;
+  color:#381205;
+  text-align:left;
+  font-size:30px;
+  text-shadow:2px 1px 0 #E0AE7B;
+}
+.addItem .formField{
+  position: relative;
+  margin: 5px;
+}
+.addItem input , .addItem select,.addItem select option{
+  position: relative;
+  width: 90%;
+  background-color:#212529;
+  color:#E0E0E0;
+  font-size:20px;
+  outline:none;
+  font-weight: bold;
+  color: #eee;
+  border:1px solid black;
+  padding: 5px;
+}
+.addItem button{
+  position: relative;
+  width: 90%;
+  background-color:#212529;
+  color:#E0E0E0;
+  font-size:20px;
+  outline:none;
+  font-weight: bold;
+  color: #eee;
+  border:1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+}
+.addItem label{
+  color:;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+h1{
+  margin:10px;
+  color:#381205;
+  text-align:center;
+  font-size:21px;
+  text-shadow:2px 1px 0 #E0AE7B;
+}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:hover{
+  text-decoration:underline;
+}
+.hidden{display:none;}
+
+
+.container.default{
+    padding:15px 5px 15px 5px;
+}
+.default li {
+  border:none;
+  font: 18px/1.75 cantora one;
+  letter-spacing:1px;
+  color:#444;
+}
+.default li a:hover {text-decoration:none;}
+
+.bar{
+  potision:absolute; 
+  top:0; left:0; right:0; 
+  height:40px;
+  padding:10px 0;
+  background:black;
+  color:grey; 
+  font-size:24px;
+  text-align:center;
+}
+#icon{outline:none;}
+#icon:hover{text-decoration:none;}
+
+.error{
+  color: red;
+  font-size: 15px;
+}
+.report button{
+  position: relative;
+  left: 90%;
+  background-color:#212529;
+  color:#E0E0E0;
+  font-size:20px;
+  outline:none;
+  font-weight: bold;
+  color: #eee;
+  border:1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.popup-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+  width: 100%;
+  height: 800px;
+  height: 100vh;
+  z-index: 100;
+  padding: 2%;
+  box-sizing: border-box;
+  display: block;
+  align-items: center;
+  justify-content: space-around;
+}
+.popup-msg {
+  top: 20%;
+  width: 50%;
+  min-width: 400px;
+  margin: auto;
+  height: 500px;
+  position: relative;
+  z-index: 200;
+  background-color: #fff;
+  border:4px solid gray;
+  padding: 2em 0 0 0;
+  text-align: center;
+  transition: all .5s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  text-align: left;
+}
+.close-x {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 12px;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: white;
+  border:3px solid #fff;
+  cursor: pointer;
+  background-color: black;
+  text-align: center;
+}
+.popup-msg #report{
+  position: relative;
+  height: 400px;
+  width:400px;
+}
